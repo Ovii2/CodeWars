@@ -1,0 +1,77 @@
+package org.example;
+
+import java.util.Arrays;
+
+public class Calculator {
+
+    public double getTotalArea(Shape... shapes) {
+        return Math.round(Arrays.stream(shapes)
+                .mapToDouble(Shape::getArea)
+                .sum() * 100.0) / 100.0;
+    }
+}
+
+interface Shape {
+    double getArea();
+}
+
+class Triangle implements Shape {
+
+    private final double triangleBase;
+    private final double triangleHeight;
+
+    public Triangle(double triangleBase, double triangleHeight) {
+        this.triangleBase = triangleBase;
+        this.triangleHeight = triangleHeight;
+    }
+
+    @Override
+    public double getArea() {
+        return (triangleBase * triangleHeight) / 2;
+    }
+}
+
+class Square implements Shape {
+
+    private final double side;
+
+    public Square(double side) {
+        this.side = side;
+    }
+
+    @Override
+    public double getArea() {
+        return side * side;
+    }
+}
+
+class Rectangle implements Shape {
+
+    private final double height;
+    private final double width;
+
+    public Rectangle(double height, double width) {
+        this.height = height;
+        this.width = width;
+    }
+
+    @Override
+    public double getArea() {
+        return width * height;
+    }
+}
+
+
+class Circle implements Shape {
+
+    private final double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+}
